@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# mostly copied from MonkeyDev, but tiny adjust to make it work on Xcode 12.5
+
 set -exo
 
 scriptName="makeMyCommandLineToolAvailable"
@@ -126,7 +128,7 @@ hasProductTypeForCommandLineTool=$(doesFileContain "$specificationFile" 'com.app
 macosxSDKSpecificationsPath=$macosSdkPlatformPath/Developer/Library/Xcode/PrivatePlugIns/IDEOSXSupportCore.ideplugin/Contents/Resources
 
 # fallback if not real
-if [ ! -f "$macosxSDKSpecificationsPath" ]; then
+if [ ! -d "$macosxSDKSpecificationsPath" ]; then
     echo "$FILE does not exist, fallback to older options"
     macosxSDKSpecificationsPath=$macosSdkPlatformPath/Developer/Library/Xcode/Specifications
 fi
